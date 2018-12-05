@@ -28,7 +28,7 @@ public class VeiculoResources {
 	//	return new Veiculo(1L, "FIAT", "UNO", "BRANCO", 5000, "1.0", "CARRO");
 	//}
 	@GetMapping(value = "/{id}")
-	public Veiculo buscaId(@PathVariable Long id) throws Exception {
+	public Veiculo buscarId(@PathVariable Long id) throws Exception {
 		Optional<Veiculo> verifica = vr.findById(id);
 		if (!verifica.isPresent()) {
 			throw new Exception("Id - " + id + " Inexistente!");
@@ -36,7 +36,7 @@ public class VeiculoResources {
 		return verifica.get();
 	}
 
-	@GetMapping(value = "/lista")
+	@GetMapping(value = "/listar")
 	public @ResponseBody Iterable<Veiculo> listaVeiculos() {
 		Iterable<Veiculo> listaVeiculos = vr.findAll();
 		return listaVeiculos;
@@ -47,31 +47,31 @@ public class VeiculoResources {
 	
 	@GetMapping(value = "/tipo/{tipo}")
     public @ResponseBody
-    Iterable<Veiculo> listaPorTipo(@PathVariable String tipo) {
+    Iterable<Veiculo> listarTipo(@PathVariable String tipo) {
         Iterable<Veiculo> listaVeiculos = vr.tiposDeVeiculo(tipo);
         return listaVeiculos;
     }
     
     @GetMapping(value = "/montadora/{montadora}")
     public @ResponseBody
-    Iterable<Veiculo> listaPorMontadora(@PathVariable String montadora) {
+    Iterable<Veiculo> listarMontadora(@PathVariable String montadora) {
         Iterable<Veiculo> listaVeiculos = vr.montadora(montadora);
         return listaVeiculos;
     }
     
     @GetMapping(value = "/motor/{motor}")
     public @ResponseBody
-    Iterable<Veiculo> listaPorMotor(@PathVariable String motor) {
+    Iterable<Veiculo> listarMotor(@PathVariable String motor) {
         Iterable<Veiculo> listaVeiculos = vr.motor(motor);
         return listaVeiculos;
     }
-    	@PostMapping(value = "/adiciona")
-	public Veiculo cadastraVeiculo(@RequestBody @Valid Veiculo oVeiculo) {
+    	@PostMapping(value = "/adicionar")
+	public Veiculo cadastrarVeiculo(@RequestBody @Valid Veiculo oVeiculo) {
 		return vr.save(oVeiculo);
 	}
 
     
-    @GetMapping(value = "/filtros/{tipo}/{montadora}/{km}")
+    @GetMapping(value = "/filtrar/{tipo}/{montadora}/{km}")
     public @ResponseBody
     Iterable<Veiculo> filtros(@PathVariable String tipo, @PathVariable String montadora, @PathVariable int km) {
         Iterable<Veiculo> listaVeiculos = vr.filtros(tipo, montadora, km);
@@ -80,8 +80,8 @@ public class VeiculoResources {
 	
 	
 
-	@PutMapping(value = "/modifica/{id}")
-	public ResponseEntity<Veiculo> modificaVeiculo(@PathVariable("id") Long id, @RequestBody Veiculo oVeiculo) {
+	@PutMapping(value = "/modificar/{id}")
+	public ResponseEntity<Veiculo> modificarVeiculo(@PathVariable("id") Long id, @RequestBody Veiculo oVeiculo) {
 		Optional<Veiculo> veiculoInfo = vr.findById(id);
 
 		if (veiculoInfo.isPresent()) {
@@ -104,8 +104,8 @@ public class VeiculoResources {
 
 	
 
-	@DeleteMapping(value = "/deleta")
-	public Veiculo deletaVeiculo(@RequestBody Veiculo oVeiculo) {
+	@DeleteMapping(value = "/deletar")
+	public Veiculo deletarVeiculo(@RequestBody Veiculo oVeiculo) {
 		vr.delete(oVeiculo);
 		return oVeiculo;
 	}
