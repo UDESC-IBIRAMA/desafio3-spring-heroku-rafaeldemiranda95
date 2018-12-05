@@ -27,7 +27,7 @@ public class Veiculo {
 		this.tipo = tipo;
 	}
 
-	// private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(generator = "increment")
@@ -106,7 +106,7 @@ public class Veiculo {
 
 	@Override
 	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
+	
 		if (!(object instanceof Veiculo)) {
 			return false;
 		}

@@ -23,17 +23,10 @@ public class VeiculoResources {
 	@Autowired
 	private VeiculoRepository vr;
 
-	@GetMapping(value = "/teste", produces = "application/json")
-	public @ResponseBody Veiculo testeVeiculo() {
-		return new Veiculo(1L, "FIAT", "UNO", "BRANCO", 5000, "1.0", "CARRO");
-	}
-
-	@GetMapping(value = "/lista")
-	public @ResponseBody Iterable<Veiculo> listaVeiculos() {
-		Iterable<Veiculo> listaVeiculos = vr.findAll();
-		return listaVeiculos;
-	}
-
+	//@GetMapping(value = "/teste", produces = "application/json")
+	//public @ResponseBody Veiculo testeVeiculo() {
+	//	return new Veiculo(1L, "FIAT", "UNO", "BRANCO", 5000, "1.0", "CARRO");
+	//}
 	@GetMapping(value = "/{id}")
 	public Veiculo buscaId(@PathVariable Long id) throws Exception {
 		Optional<Veiculo> verifica = vr.findById(id);
@@ -42,6 +35,13 @@ public class VeiculoResources {
 		}
 		return verifica.get();
 	}
+
+	@GetMapping(value = "/lista")
+	public @ResponseBody Iterable<Veiculo> listaVeiculos() {
+		Iterable<Veiculo> listaVeiculos = vr.findAll();
+		return listaVeiculos;
+	}
+
 
 
 	
