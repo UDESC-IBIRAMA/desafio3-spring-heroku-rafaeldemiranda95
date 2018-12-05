@@ -117,10 +117,6 @@ public class Veiculo {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Id: " + getId() + "\nMontadora: " + getMontadora() + "\nModelo: " + getModelo() + "\nCor: " + getCor()
-				+ "\nKM: " + getKm() + "\nMotor: " + getMotor() + "\nTipo: " + getTipo();
-	}
+
 
 }

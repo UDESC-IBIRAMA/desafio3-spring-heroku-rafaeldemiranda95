@@ -65,6 +65,11 @@ public class VeiculoResources {
         Iterable<Veiculo> listaVeiculos = vr.motor(motor);
         return listaVeiculos;
     }
+    	@PostMapping(value = "/adiciona")
+	public Veiculo cadastraVeiculo(@RequestBody @Valid Veiculo oVeiculo) {
+		return vr.save(oVeiculo);
+	}
+
     
     @GetMapping(value = "/filtros/{tipo}/{montadora}/{km}")
     public @ResponseBody
@@ -74,10 +79,6 @@ public class VeiculoResources {
     }
 	
 	
-	@PostMapping(value = "/adiciona")
-	public Veiculo cadastraVeiculo(@RequestBody @Valid Veiculo oVeiculo) {
-		return vr.save(oVeiculo);
-	}
 
 	@PutMapping(value = "/modifica/{id}")
 	public ResponseEntity<Veiculo> modificaVeiculo(@PathVariable("id") Long id, @RequestBody Veiculo oVeiculo) {
@@ -93,7 +94,7 @@ public class VeiculoResources {
 			veiculoAtual.setMotor(oVeiculo.getMotor());
 			veiculoAtual.setTipo(oVeiculo.getTipo());
 
-			// altera os dados
+		
 			vr.save(veiculoAtual);
 			return ResponseEntity.ok(veiculoAtual);
 		} else {
@@ -109,14 +110,6 @@ public class VeiculoResources {
 		return oVeiculo;
 	}
 	
-		@DeleteMapping(value = "/deleta/{id}")
-	public ResponseEntity<Void> removerVeiculo(@PathVariable Long id) {
-		Veiculo existe = vr.getOne(id);
-		if (existe == null) {
-			return ResponseEntity.notFound().build();
-		} else
-			vr.delete(existe);
-			return ResponseEntity.noContent().build();	
-	}
+
 	
 }
