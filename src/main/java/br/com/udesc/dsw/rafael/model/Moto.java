@@ -5,10 +5,7 @@
  */
 package main.java.br.com.udesc.dsw.rafael.model;
 
-/**
- *
- * @author Rafael
- */
+
 public class Moto {
         private String montadora;
     private String modelo;
